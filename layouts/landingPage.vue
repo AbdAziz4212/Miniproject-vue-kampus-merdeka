@@ -45,7 +45,7 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main>
+    <v-main class="mb-16">
         <Nuxt />
     </v-main>
   
@@ -55,43 +55,40 @@
       padless
     >
       <v-card
-        class="flex"
+        class="flex grey lighten-1"
         flat
         tile
       >
-          <v-row no-gutters space-between>
-            <v-col cols="12" sm="6" class="pa-10">
-              <v-avatar
-                class="mr-3"
-                size="60"
-              >
-                <v-img
-                  contain
-                  max-height="60%"
-                  src="/assets/logocarpo.png"
-                ></v-img>
-              </v-avatar>
-              <label class="font-weight-bold ma-0">Car</label><label class="font-weight-regular ma-0">po</label>
-              <div class="subtitle-1 ml-4">First premium rental car in Indonesia</div>
-            </v-col>
-            <v-col cols="12" sm="3" class="pa-10">
-              <div class="text-h6">About Us</div>
-              <div v-for="about in aboutus" :key="about" class="subtitle-1">
-                {{ about }}
-              </div>
-            </v-col>
-            <v-col cols="12" sm="3" class="pa-10">
-              <div class="text-h6">About Us</div>
-              <div v-for="about in aboutus" :key="about" class="subtitle-1">
-                {{ about }}
-              </div>
-            </v-col>
-          </v-row>
-          
-        </v-card-title>
-
-        <v-card-title>
-          <div class="subheading font-weight-medium">
+        <v-row no-gutters space-between>
+          <v-col cols="12" sm="6" class="pa-10">
+            <v-avatar
+              class="mr-3"
+              size="60"
+            >
+              <v-img
+                contain
+                max-height="60%"
+                src="/assets/logocarpo.png"
+              ></v-img>
+            </v-avatar>
+            <label class="font-weight-bold ma-0">Car</label><label class="font-weight-regular ma-0">po</label>
+            <div class="subtitle-1 ml-4">First premium rental car in Indonesia</div>
+          </v-col>
+          <v-col cols="12" sm="3" class="pa-10">
+            <div class="text-h6">About Us</div>
+            <div v-for="about in aboutus" :key="about" class="subtitle-1">
+              {{ about }}
+            </div>
+          </v-col>
+          <v-col cols="12" sm="3" class="pa-10">
+            <div class="text-h6">About Us</div>
+            <div v-for="about in aboutus" :key="about" class="subtitle-1">
+              {{ about }}
+            </div>
+          </v-col>
+        </v-row>
+        <v-card-title class="white">
+          <div class="text-overline font-weight-medium">
             <v-icon class="mr-1">
               mdi-copyright
             </v-icon>
