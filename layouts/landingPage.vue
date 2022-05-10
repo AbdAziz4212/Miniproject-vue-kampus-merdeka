@@ -27,13 +27,15 @@
         color="grey darken-1"
       >
         <v-tab
-          v-for="link in links"
-          :key="link"
+          v-for="(link, index ) in links"
+          :key="index"
+          nuxt
+          :to="link.link"
         >
-          {{ link }}
+          {{ link.name }}
         </v-tab>
       </v-tabs>
-      <v-btn
+      <!-- <v-btn
         rounded
         color="darken-1 pa-5"
         dark
@@ -42,10 +44,29 @@
           mdi-cloud-download
         </v-icon>
          Download Apps
+      </v-btn> -->
+      <v-btn
+        rounded
+        color="darken-1 pa-5 ma-2"
+        dark
+        nuxt
+        to="/login"
+      >
+        Login
       </v-btn>
+      <v-btn
+        rounded
+        color="darken-1 pa-5 ma-2"
+        outlined
+        nuxt
+        to="/register"
+      >
+        Register
+      </v-btn>
+
     </v-app-bar>
 
-    <v-main class="mb-16">
+    <v-main>
         <Nuxt />
     </v-main>
   
@@ -115,10 +136,10 @@
   export default {
     data: () => ({
       links: [
-        'About Us',
-        'Cars',
-        'Futures',
-        'Help',
+        { name: 'Home' , link: '/' },
+        { name: 'Cars' , link: '/search' },
+        { name: 'Futures' , link: '/search' },
+        { name: 'Help' , link: '/search' },
       ],
       icons: [
         'mdi-facebook',
@@ -137,6 +158,9 @@
 </script>
 
 <style scoped>
+* {
+  text-decoration: none;
+}
 .v-tabs {
   width: 50% !important;
 }

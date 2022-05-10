@@ -310,8 +310,11 @@ export default {
 }
 </script>
 
-<style>
-  .city-title {
-    letter-spacing: 4px;
-  }
+<style scoped>
+.city-title {
+  letter-spacing: 4px;
+}
+.v-main {
+  background-color: white;
+}
 </style>
