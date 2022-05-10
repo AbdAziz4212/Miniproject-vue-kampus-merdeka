@@ -5,7 +5,7 @@
         <Carouselcar />
       </v-col>
       <v-col cols="12" sm="12" md="6" class="ma-0 pa-16">
-        <Loginform />
+        <Registerform />
       </v-col>
     </v-row>
   </div>
