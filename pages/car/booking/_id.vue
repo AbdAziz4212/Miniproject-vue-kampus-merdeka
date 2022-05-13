@@ -3,14 +3,13 @@
     <v-container class="mt-10">
       <div id="input-section">
         <div class="text-h4">
-          Detail Car
+          Booking Order
         </div>
         <v-btn
           color="blue-grey"
           class="white--text"
           outlined
-          nuxt
-          to="/search"
+          @click="goBack"
         >
           <v-icon
             dark
@@ -19,28 +18,33 @@
           </v-icon>
             Back
         </v-btn>
-        <Cardetail :car="car" />
       </div>
-
+      <v-row>
+        <v-col cols="12" sm="12" md="2" lg="3">
+          <Bookingcar :car="car" />
+        </v-col>
+        <v-col cols="12" sm="12" md="10" lg="9">
+          <Bookinginput />
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
-  name: 'CarDetail',
+  name: 'BookingCar',
   layout: 'landingPage',
-  async asyncData({ route, params }) {
-    const { data } = await axios.get('https://hopeful-serval-60.hasura.app/api/rest/vehicle-detail', { params: { id: params.id } })
-    return { car: data.carpo_vehicle_by_pk }
-  },
   data: () => ({
-    car: []
+    car: {}
   }),
   head: {
-    title: 'Detail of Car'
+    title: 'Search Car'
+  },
+  methods: {
+    goBack () {
+      this.$router.go(-1)
+    }
   },
 }
 </script>
