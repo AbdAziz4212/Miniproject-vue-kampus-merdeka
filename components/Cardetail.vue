@@ -80,6 +80,8 @@
               color="blue-grey"
               class="ma-2 white--text"
               x-large
+              nuxt
+              :to="`/car/booking/${car.id}`"
             >
               <div>${{ car.price }} <span class="text-caption">/Day</span> </div>
               <v-icon
