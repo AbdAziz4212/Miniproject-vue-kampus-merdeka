@@ -19,7 +19,7 @@
           </v-icon>
             Back
         </v-btn>
-        <Cardetail />
+        <Cardetail :car="car" />
       </div>
 
     </v-container>
@@ -27,13 +27,17 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'CarDetail',
   layout: 'landingPage',
+  async asyncData({ route, params }) {
+    const { data } = await axios.get('https://hopeful-serval-60.hasura.app/api/rest/vehicle-detail', { params: { id: params.id } })
+    return { car: data.carpo_vehicle_by_pk }
+  },
   data: () => ({
-    car: { 
-      name:'Volco XS', price:25, speed:'135', year:'2019', fuel:'Gasoline', image:'../assets/volvo.png' 
-    }
+    car: []
   }),
   head: {
     title: 'Search Car'

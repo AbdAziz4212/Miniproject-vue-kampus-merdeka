@@ -35,7 +35,7 @@
           {{ link.name }}
         </v-tab>
       </v-tabs>
-      <!-- <v-btn
+      <v-btn
         rounded
         color="darken-1 pa-5"
         dark
@@ -44,8 +44,8 @@
           mdi-cloud-download
         </v-icon>
          Download Apps
-      </v-btn> -->
-      <v-btn
+      </v-btn>
+      <!-- <v-btn
         rounded
         color="darken-1 pa-5 ma-2"
         dark
@@ -62,8 +62,7 @@
         to="/register"
       >
         Register
-      </v-btn>
-
+      </v-btn> -->
     </v-app-bar>
 
     <v-main>

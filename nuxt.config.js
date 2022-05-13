@@ -84,7 +84,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'https://rickandmortyapi.com/graphql',
+        httpEndpoint: 'https://hopeful-serval-60.hasura.app/v1/graphql',
       },
     },
   },

@@ -7,7 +7,8 @@
       <v-row>
         <v-col cols="12" md="6">
           <v-img
-            src="../assets/volvo.png"
+            lazy-src="../assets/volvo.png"
+            :src="car.detail_image"
             class="mx-auto"
           ></v-img>
         </v-col>
@@ -15,20 +16,20 @@
           <v-row>
             <v-col cols="12" md="4" class="pa-5">
               <div>Name :</div>
-              <div class="text-h5 font-weight-bold">Volvo XS</div>
+              <div class="text-h5 font-weight-bold">{{ car.name }}</div>
             </v-col>
             <v-col cols="12" md="4" class="pa-5">
               <div>Type :</div>
-              <div class="text-h5 font-weight-bold">Sport</div>
+              <div class="text-h5 font-weight-bold">{{ car.type.name_type }}</div>
             </v-col>
             <v-col cols="12" md="4" class="pa-5">
               <div>Year :</div>
-              <div class="text-h5 font-weight-bold">2019</div>
+              <div class="text-h5 font-weight-bold">{{ car.year }}</div>
             </v-col>
             <v-col cols="12" md="12" class="pa-5">
               <div>Description :</div>
               <div class="text-subtitle-1 font-weight-medium">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, facere. Ex iste asperiores assumenda optio facilis culpa commodi fuga. Quisquam commodi eos sint nulla, laboriosam ipsum. Atque consectetur ipsum aliquam!
+                {{ car.description }}
               </div>
             </v-col>
             <v-col cols="12" md="12" class="pa-5">
@@ -52,7 +53,7 @@
                       </v-col>
                       <v-col cols="12" md="4" class="pa-5">
                         <div class="font-weight-bold">
-                          <v-icon>mdi-car-cog</v-icon> Automatic
+                          <v-icon>mdi-car-cog</v-icon> {{ car.transmission.transmission }}
                         </div>
                       </v-col>
                       <v-col cols="12" md="12" class="pa-5">
@@ -80,7 +81,7 @@
               class="ma-2 white--text"
               x-large
             >
-              <div>$25 <span class="text-caption">/Day</span> </div>
+              <div>${{ car.price }} <span class="text-caption">/Day</span> </div>
               <v-icon
                 right
                 dark  
@@ -99,5 +100,11 @@
 <script>
 export default {
   name: 'DetailOfCar',
+  props: {
+    car: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>

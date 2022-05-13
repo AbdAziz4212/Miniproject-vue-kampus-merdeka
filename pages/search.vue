@@ -11,7 +11,7 @@
         >
           <v-row>
             
-            <v-col cols="12" md="3">
+            <v-col cols="12" sm="12" md="6" lg="3">
               <div class="pa-5">
                 <div>
                   Location
@@ -120,46 +120,15 @@
       <div id="result-section" class="my-16">
         <v-row>
           <v-col
-            v-for="(car, index) in cars"
+            v-for="(car, index) in getCars"
             :key="index"
             cols="12"
-            md="3"
+            sm="12"
+            md="6"
+            lg="4"
+            xl="3"
           >
-            <v-card class="grey lighten-5 pa-5 rounded-xl" elevation="3" to="/car/1">
-              <v-img
-                :src="car.image"
-                class="mx-auto"
-              ></v-img>
-              <div class="d-flex justify-space-between my-3">
-                <div  class="font-weight-medium text-h5">
-                  {{ car.name }}
-                </div>
-                <div class="text-subtitle-2">
-                  <div>${{ car.price }}<span class="text-caption">/Day</span></div>
-                </div>
-              </div>
-              <v-row>
-                <v-col cols="12" md="4">
-                  <div class="text-center">
-                    <v-icon>mdi-speedometer</v-icon>
-                    {{ car.speed }}
-                  </div>
-                </v-col>
-                <v-divider vertical></v-divider>
-                <v-col cols="12" md="4">
-                  <div class="text-center">
-                    {{ car.year }}
-                  </div>
-                </v-col>
-                <v-divider vertical></v-divider>
-                <v-col cols="12" md="4">
-                  <div class="text-center">
-                    <v-icon>mdi-gas-station</v-icon>
-                    {{ car.fuel }}
-                  </div>
-                </v-col>
-              </v-row>
-            </v-card>
+            <Carlist :car="car" />
           </v-col>
         </v-row>
       </div>
@@ -180,20 +149,24 @@ export default {
       { state: 'California', abbr: 'CA' },
       { state: 'New York', abbr: 'NY' },
     ],
-    cars: [
-      { name:'Volco XS', price:25, speed:'135', year:'2019', fuel:'Gasoline', image:'../assets/volvoxs.png' },
-      { name:'Volco XS', price:25, speed:'135', year:'2019', fuel:'Gasoline', image:'../assets/volvoxs.png' },
-      { name:'Volco XS', price:25, speed:'135', year:'2019', fuel:'Gasoline', image:'../assets/volvoxs.png' },
-      { name:'Volco XS', price:25, speed:'135', year:'2019', fuel:'Gasoline', image:'../assets/volvoxs.png' },
-      { name:'Volco XS', price:25, speed:'135', year:'2019', fuel:'Gasoline', image:'../assets/volvoxs.png' },
-      { name:'Volco XS', price:25, speed:'135', year:'2019', fuel:'Gasoline', image:'../assets/volvoxs.png' },
-      { name:'Volco XS', price:25, speed:'135', year:'2019', fuel:'Gasoline', image:'../assets/volvoxs.png' },
-      { name:'Volco XS', price:25, speed:'135', year:'2019', fuel:'Gasoline', image:'../assets/volvoxs.png' },
-    ]
   }),
   head: {
     title: 'Search Car'
   },
+  computed: {
+    getCars() {
+      const cars = this.$store.state.search.cars
+      return cars
+    },
+  },
+  mounted () {
+    this.getFetchCars()
+  },
+  methods: {
+    getFetchCars () {
+      this.$store.dispatch('search/getFetchCar')
+    }
+  }
 }
 </script>
 
