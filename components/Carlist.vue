@@ -1,10 +1,12 @@
 <template>
   <div>
-    <v-card class="grey lighten-5 pa-5 rounded-xl" elevation="3" nuxt :to="`/car/${car.id}`">
+    <v-card class="grey lighten-5 pa-5 rounded-xl" height="280" elevation="3" nuxt :to="`/car/${car.id}`">
       <v-img
         lazy-src="../assets/volvoxs.png"
         :src="car.icon_image"
         class="mx-auto"
+        max-width="250"
+        max-height="150"
       ></v-img>
       <div class="d-flex justify-space-between my-3">
         <div  class="font-weight-medium text-h5">

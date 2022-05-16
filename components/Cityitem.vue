@@ -11,7 +11,7 @@
         {{ city.city_name }}
         <v-spacer></v-spacer>
         <v-icon large dark>
-          mdi-arrow-right
+          mdi-check-circle
         </v-icon>
       </v-card-title>
     </v-img>

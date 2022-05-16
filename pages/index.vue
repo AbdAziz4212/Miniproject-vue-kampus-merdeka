@@ -4,7 +4,7 @@
     <v-container>
       <Whysection />
       <div id="city-section" class="my-16">
-        <div class="text-h4 text-center font-weight-medium ma-5 mb-8">Search by City</div>
+        <div class="text-h4 text-center font-weight-medium ma-5 mb-8">Most Accessible City</div>
         <v-row>
           <v-col 
             v-for="(city, index) in getCities"
