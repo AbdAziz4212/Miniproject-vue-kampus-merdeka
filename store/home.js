@@ -2,6 +2,7 @@ export const state = () => ({
     cities: [],
     testimonials: [],
     info: '',
+    status: false,
   })
   
   export const mutations = {

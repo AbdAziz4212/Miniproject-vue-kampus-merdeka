@@ -29,7 +29,7 @@
         </v-col>
         <v-divider vertical></v-divider>
         <v-col cols="12" xs="4" sm="4" md="4">
-          <div class="text-center">
+          <div class="text-center text-subtitle-1">
             <v-icon>mdi-gas-station</v-icon>
             {{ car.fuel.fuel }}
           </div>
