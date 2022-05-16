@@ -5,14 +5,14 @@
       class="my-16 rounded-xl"
     >
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="12" sm="12" md="6">
           <v-img
             lazy-src="../assets/volvo.png"
             :src="car.detail_image"
             class="mx-auto"
           ></v-img>
         </v-col>
-        <v-col cols="12" md="6" class="pa-10">
+        <v-col cols="12" sm="12" md="6" class="pa-10">
           <v-row>
             <v-col cols="12" md="4" class="pa-5">
               <div>Name :</div>
@@ -40,36 +40,21 @@
                     Other Information
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
-                    <v-row>
-                      <v-col cols="12" md="4" class="pa-5">
-                        <div class="font-weight-bold">
-                          <v-icon>mdi-account-multiple</v-icon> 8 Passenger
-                        </div>
-                      </v-col>
-                      <v-col cols="12" md="4" class="pa-5">
-                        <div class="font-weight-bold">
-                          <v-icon>mdi-car-door</v-icon> 4 Door
-                        </div>
-                      </v-col>
-                      <v-col cols="12" md="4" class="pa-5">
-                        <div class="font-weight-bold">
-                          <v-icon>mdi-car-cog</v-icon> {{ car.transmission.transmission }}
-                        </div>
-                      </v-col>
-                      <v-col cols="12" md="12" class="pa-5">
-                        <div class="font-weight-bold">
-                          Features
-                        </div>
-                        <div>
-                          <v-chip class="ma-2">Default</v-chip>
-                          <v-chip class="ma-2">Default</v-chip>
-                          <v-chip class="ma-2">Default</v-chip>
-                          <v-chip class="ma-2">Default</v-chip>
-                          <v-chip class="ma-2">Default</v-chip>
-                          <v-chip class="ma-2">Default</v-chip>
-                        </div>
-                      </v-col>
-                    </v-row>
+                    <div class="d-flex flex-wrap justify-space-around">
+                      <div class="font-weight-bold ma-2 pa-1">
+                        <v-icon>mdi-speedometer</v-icon> {{ car.speed }} Km
+                      </div>
+                      <div class="font-weight-bold ma-2 pa-1">
+                        <v-icon>mdi-account-multiple</v-icon> {{ car.passenger }} Passenger
+                      </div>
+                      <div class="font-weight-bold ma-2 pa-1">
+                        <v-icon>mdi-car-door</v-icon> {{ car.door }} Door
+                      </div>
+                      <div class="font-weight-bold ma-2 pa-1">
+                        <v-icon>mdi-car-cog</v-icon> {{ car.transmission.transmission }}
+                      </div>
+                    </div>
+                    
                   </v-expansion-panel-content>
                 </v-expansion-panel>
               </v-expansion-panels>

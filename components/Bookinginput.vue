@@ -7,10 +7,15 @@
       <v-card-title>
         <div>Orderer data</div>
       </v-card-title>
+      <v-card-subtitle v-if="errorValidate !== ''">
+        <div class="darken red--text">Error!!!</div>
+        <div class="darken red--text">{{ errorValidate }}</div>
+      </v-card-subtitle>
       <v-card-text>
         <v-row>
           <v-col cols="12" sm="12" md="12">
             <v-text-field
+              v-model="fullname"
               label="Fullname"
               outlined
               dense
@@ -20,6 +25,7 @@
           </v-col>
           <v-col cols="12" sm="12" md="6">
             <v-text-field
+              v-model="phone"
               label="Phone"
               outlined
               dense
@@ -28,6 +34,8 @@
           </v-col>
           <v-col cols="12" sm="12" md="6">
             <v-text-field
+              v-model="email"
+              :rules="emailRules"
               label="Email"
               outlined
               dense
@@ -65,7 +73,6 @@
                 class="pa-10"
                 v-bind="attrs"
                 v-on="on"
-                @change="prices"
               ></v-text-field>
             </template>
             <v-date-picker
@@ -117,7 +124,7 @@
               ></v-text-field>
             </template>
             <v-date-picker
-              v-model="date"
+              v-model="date2"
               scrollable
             >
               <v-spacer></v-spacer>
@@ -141,6 +148,7 @@
 
         <v-col cols="12" sm="12" md="12">
           <v-textarea
+            v-model="address"
             label="Adress"
             auto-grow
             outlined
@@ -150,20 +158,14 @@
           ></v-textarea>
         </v-col>
       </v-row>
-      <div class="pa-5 d-flex justify-space-between">
-        <v-btn
-          color="green lighten-1"
-          class="ma-2 white--text"
-          x-large
-        >
-          <div>$ {{ totalPrice }}</div>
-        </v-btn> 
+      <div class="pa-5 text-right">
         <v-btn
           color="blue-grey"
           class="ma-2 white--text"
           x-large
+          @click="submit"
         >
-          <div>Booking</div>
+          <div>Checkout</div>
           <v-icon
             right
             dark  
@@ -188,14 +190,65 @@ export default {
     modal2: false,
     menu2: false,
     totalPrice: 2,
+    fullname: '',
+    phone: '',
+    email: '',
+    emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
+    address: '',
+    errorValidate: '',
+    valid: false,
   }),
   methods: {
-    prices () {
-      // const total = this.date - this.date2
+    submit () {
       /* eslint-disable no-console */
-      console.log(this.date);
+      const firstdate = new Date(this.date)
+      const lastdate = new Date(this.date2)
+      const diffday2 = parseInt((lastdate - firstdate ) / (1000 * 60 * 60 * 24), 10)
+
+      if(this.fullname !== ''){
+        this.errorValidate = ''
+        if(this.phone !== ''){
+          this.errorValidate = ''
+          if(this.email !== ''){
+            this.errorValidate = ''
+            if(diffday2 > 0){
+              this.errorValidate = ''
+              if(this.address !== ''){
+                this.errorValidate = ''
+                this.valid = true
+              }else{
+                this.errorValidate = 'Address is Required'
+              }
+            }else{
+              this.errorValidate = 'Date do not match (min 1 day)'
+            }
+          }else{
+            this.errorValidate = 'Email is Required'
+          }
+        }else{
+          this.errorValidate = 'Phone is Required'
+        }
+      }else{
+        this.errorValidate = 'Fullname is Required'
+      }
+
+      if(this.valid){
+        console.log(this.valid)
+        const input = { 
+          fullname: this.fullname,
+          phone: this.phone,
+          email: this.email,
+          order_date: this.date,
+          return_date: this.date2,
+          duration: diffday2,
+          address: this.address
+        }
+        this.$emit('resultInput', input)
+      }
       /* eslint-enable no-console */
-      // this.totalPrice = total
     }
   },
 }

@@ -2,7 +2,8 @@ export const state = () => ({
   cars: [],
   info: '',
   carLimit: 12,
-  carOffset: 0
+  carOffset: 0,
+  status: false,
 })
 
 export const mutations = {
