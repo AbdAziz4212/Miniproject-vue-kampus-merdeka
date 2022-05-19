@@ -48,7 +48,7 @@
             </v-col>
             <v-divider vertical></v-divider>
 
-            <v-col cols="12" sm="12" md="3">
+            <v-col cols="12" sm="12" md="2">
               <div class="pa-5">
                 <div>
                   Brand
@@ -94,9 +94,24 @@
                   large
                   x-large
                   class="pa-10"
+                  :loading="loading"
                   @click="searchData"
                 >
                   Search
+                </v-btn>
+              </div>
+            </v-col>
+
+            <v-col cols="12" md="1">
+              <div class="pa-5">
+                <v-btn
+                  dark
+                  elevation="2"
+                  class="pa-3"
+                  :loading="loading2"
+                  @click="resetSearch"
+                >
+                  Reset
                 </v-btn>
               </div>
             </v-col>
@@ -115,8 +130,7 @@
               cols="12"
               sm="12"
               md="6"
-              lg="4"
-              xl="3"
+              lg="3"
             >
               <Carlist :car="car" />
             </v-col>
@@ -131,44 +145,9 @@
 </template>
 
 <script>
-import { gql } from 'graphql-tag'
-
-const ALL_CHARACTERS_QUERY = gql`
-  query MyQuery($offset: Int = 3, $limit: Int = 12) {
-    carpo_vehicle(offset: $offset, limit: $limit) {
-      name
-      price
-      speed
-      year
-      fuel {
-        fuel
-      }
-      icon_image
-      id
-    }
-  }
-`;
-
 export default {
   name: 'InspirePage',
   layout: 'landingPage',
-  async asyncData({ app, params }) {
-    const client = app.apolloProvider.defaultClient;
-
-    try {
-      const res = await client.query({
-        query: ALL_CHARACTERS_QUERY,
-      })
-      /* eslint-disable no-console */
-      // console.log(res.data.carpo_vehicle);
-      /* eslint-enable no-console */
-      const { searchCarsAll } = res.data.carpo_vehicle;
-      return { searchCars: searchCarsAll }
-    } catch(e){
-      alert('Error', e)
-      throw e
-    }    
-  },
   data: () => ({
     select: { state: 'Florida', abbr: 'FL' },
     items: [
@@ -187,7 +166,9 @@ export default {
     transmisionSelected: '',
     brandSelected: '',
     typeSelected: '',
-    message: false
+    message: false,
+    loading: false,
+    loading2: false,
   }),
   head: {
     title: 'Search Car'
@@ -218,21 +199,24 @@ export default {
       this.allType = this.$store.state.search.type
     },
     searchData () {
-      /* eslint-disable no-console */
-      if(this.citySelected !== '' && this.transmisionSelected !== '' && this.brandSelected !== '' && this.typeSelected !== ''){
-        this.message = false
-        const searchData = {
-          city: this.citySelected,
-          transmision: this.transmisionSelected,
-          brand: this.brandSelected,
-          type: this.typeSelected
-        }
-        // console.log(searchData)
-        this.$store.dispatch('search/getCarsBySearch', searchData )
-      }else{
-        this.message = true
+      this.loading = !this.loading
+      const searchData = {
+        city: (this.citySelected) ? this.citySelected : null ,
+        transmision: (this.transmisionSelected) ? this.transmisionSelected : null,
+        brand: (this.brandSelected) ? this.brandSelected : null,
+        type: (this.typeSelected) ? this.typeSelected : null
       }
-      /* eslint-enable no-console */
+      this.$store.dispatch('search/getCarsBySearchOther', searchData )
+      setTimeout(() => (this.loading = !this.loading), 3000)
+    },
+    resetSearch () {
+      this.loading2 = !this.loading2
+      this.citySelected = ''
+      this.transmisionSelected = ''
+      this.brandSelected = ''
+      this.typeSelected = ''
+      setTimeout(() => (this.loading2 = false), 3000)
+      this.getFetchCars()
     }
   }
 }

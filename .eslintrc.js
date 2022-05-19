@@ -13,6 +13,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     "import/no-named-as-default": 0,
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    'no-console': 'off',
   },
 }

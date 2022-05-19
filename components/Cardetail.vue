@@ -7,9 +7,12 @@
       <v-row>
         <v-col cols="12" sm="12" md="6">
           <v-img
+            :aspect-ratio="16/9"
             lazy-src="../assets/volvo.png"
             :src="car.detail_image"
-            class="mx-auto"
+            class="mx-auto rounded-xl mt-5"
+            max-width="750"
+            max-height="500"
           ></v-img>
         </v-col>
         <v-col cols="12" sm="12" md="6" class="pa-10">
