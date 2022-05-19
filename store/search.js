@@ -1,3 +1,25 @@
+import { gql } from 'graphql-tag'
+
+const ALL_CHARACTERS_QUERY = gql`
+  query MyQuery {
+    carpo_vehicle{
+      name
+      price
+      speed
+      year
+      fuel {
+        fuel
+      }
+      icon_image
+      id
+      brand_id
+      city_id
+      type_id
+      transmission_id
+    }
+  }
+`;
+
 export const state = () => ({
   cars: [],
   regencies: [],
@@ -54,9 +76,7 @@ export const actions = {
     })
   },
   async getCarsBySearch (store, payload) {
-    /* eslint-disable no-console */
     const link = 'https://hopeful-serval-60.hasura.app/api/rest/search-car'
-    console.log(payload);
     await this.$axios.get(link, {
       params: {
         _eq: payload.city,
@@ -67,12 +87,45 @@ export const actions = {
     })
     .then((Response) => {
       store.commit('setCars', Response.data.carpo_vehicle)
-      // console.log(Response.data.carpo_vehicle)
       store.commit('setInfo', '')
     })
     .catch((error) => {
       store.commit('setInfo', error)
     })
-    /* eslint-enable no-console */
+  },
+  async getCarsBySearchOther (store, payload) {
+    const apollo = this.app.apolloProvider.defaultClient;
+
+    try {
+      const result = await apollo.query({
+        query: ALL_CHARACTERS_QUERY
+      })
+      let dataCarpo = result.data.carpo_vehicle
+      if(payload.city){
+        dataCarpo = dataCarpo.filter(function (el) {
+          return el.city_id === payload.city
+        })
+      }
+      if(payload.transmision){
+        dataCarpo = dataCarpo.filter(function (el) {
+          return el.transmission_id === payload.transmision
+        })
+      }
+      if(payload.brand){
+        dataCarpo = dataCarpo.filter(function (el) {
+          return el.brand_id === payload.brand
+        })
+      }
+      if(payload.type){
+        dataCarpo = dataCarpo.filter(function (el) {
+          return el.type_id === payload.type
+        })
+      }
+      store.commit('setCars', dataCarpo)
+      store.commit('setInfo', '')
+    } catch (error) {
+      alert(error)
+      throw error
+    }
   },
 }

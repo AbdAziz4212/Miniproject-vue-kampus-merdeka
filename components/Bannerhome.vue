@@ -11,7 +11,7 @@
         <div class="text-sm-h2 text-md-h2 text-lg-h1 text-h3 font-weight-bold">
           In Indonesia
         </div>
-        <div class="text-subtitle-1">
+        <div class="text-subtitle-1 subtitle-banner">
           The First premium car in indonesia. Based on ratings and reviews from real users is the top-ranked car rental service company. If you are planning to rent a cor you can trust us.
         </div>
       </v-card>
@@ -32,3 +32,9 @@ export default {
   name: 'BannerHome',
 }
 </script>
+
+<style scoped>
+.subtitle-banner {
+  width: 75%;
+}
+</style>

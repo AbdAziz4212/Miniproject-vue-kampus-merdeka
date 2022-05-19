@@ -30,7 +30,7 @@
               Many Location
             </div>
             <div>
-              Book your car online or offline. Follow the easy process to book your car online. Or just call us any time from anywhere
+              We have an extensive number of cars that will be available to pick you up from any location throughout the country
             </div>
           </v-card>
         </v-col>
@@ -46,7 +46,7 @@
               Satisfied Customer
             </div>
             <div>
-              Book your car online or offline. Follow the easy process to book your car online. Or just call us any time from anywhere
+              We have 10+ happy customers and it's increasing.View our review section to get their feedback about our service.
             </div>
           </v-card>
         </v-col>

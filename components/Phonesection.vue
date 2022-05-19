@@ -18,7 +18,7 @@
             MODERN APP
           </div>
           <div class="text-subtitle-1">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam suscipit enim quis possimus ab, architecto consectetur culpa neque obcaecati, deleniti nihil dolorum eveniet laboriosam optio facilis repudiandae hic laudantium quo.
+            We developed a simple and functional app. It is built in suchaway as to simplify the problem of the car selection and rental process.View the location,statement,and other information about each of the vehicles in one click.
           </div>
           <v-btn
             color="darken-1 pa-5 mt-7"
