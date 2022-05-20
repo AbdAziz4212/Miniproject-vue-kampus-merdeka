@@ -5,7 +5,7 @@
       <div>
         Transfer to Virtual Account : 91281293182718319 
       </div>
-      <Invoicecard :invoice="codeTrans" />
+        <Invoicecard :invoice="codeTrans" />
     </v-container>
   </div>
 </template>
@@ -17,13 +17,9 @@ export default {
   name: 'InvoicePage',
   layout: 'landingPage',
   async asyncData({ route, store }) {
-    /* eslint-disable no-console */
-    console.log(store.state.order.code)
     const codeID = store.state.order.code
     const { data } = await axios.get('https://hopeful-serval-60.hasura.app/api/rest/invoice', { params: { _eq: codeID } })
-    // console.log(data.carpo_transactions)
     return { codeTrans: data.carpo_transactions }
-    /* eslint-enable no-console */
   },
   data: () => ({
     codeTrans: []
@@ -37,6 +33,13 @@ export default {
       return code
     },
   },
+  mounted () {
+    this.getInvoice()
+  },
+  methods: {
+    getInvoice () {
+    }
+  }
 }
 </script>
 

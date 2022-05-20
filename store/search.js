@@ -95,7 +95,6 @@ export const actions = {
   },
   async getCarsBySearchOther (store, payload) {
     const apollo = this.app.apolloProvider.defaultClient;
-
     try {
       const result = await apollo.query({
         query: ALL_CHARACTERS_QUERY

@@ -15,8 +15,7 @@
         </v-icon>
           Back
       </v-btn>
-      <!-- {{ orderDetail }} -->
-      <Checkoutcard :order="orderDetail.object" @payout="pay" />
+      <Checkoutcard :order="orderDetail" @payout="pay" />
     </v-container>
   </div>
 </template>
@@ -33,11 +32,8 @@ export default {
   },
   computed: {
     orderDetail() {
-      const order = this.$store.state.order.order
-      if(!order){
-        this.$router.go(-1)
-      }
-      return order
+      const myorder = this.$store.state.order.order
+      return myorder.object
     },
   },
   methods: {
@@ -45,10 +41,7 @@ export default {
       this.$router.go(-1)
     },
     pay () {
-      /* eslint-disable no-console */
-      // console.log(this.orderDetail.object);
-      /* eslint-enable no-console */
-      const orderField = this.orderDetail.object
+      const orderField = this.orderDetail
       this.$store.dispatch('order/ordertransaction', { object: orderField })
     }
   },

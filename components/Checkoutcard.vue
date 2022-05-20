@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-card
-      v-if="order"
       elevation="2"
       class="mt-12 pa-6 rounded-lg"
     >
@@ -46,28 +45,21 @@
       <v-card-text>
         <div></div>
         <v-row>
-          <v-col cols="12" sm="12" md="6">
-            <v-img
-              lazy-src="../../assets/volvo.png"
-              :src="order.car.detail_image"
-              class="mx-auto"
-            ></v-img>
-          </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="12">
             <v-row>
-              <v-col cols="12" md="6">
+              <v-col cols="12" md="3">
                 <div>Car Name</div>
                 <div class="text-h6">{{ order.car.name }}</div>
               </v-col>
-              <v-col cols="12" md="6">
+              <v-col cols="12" md="3">
                 <div>Brand</div>
                 <div class="text-h6">{{ order.car.brand.brand }}</div>
               </v-col>
-              <v-col cols="12" md="6">
+              <v-col cols="12" md="3">
                 <div>City</div>
                 <div class="text-h6">{{ order.car.regency.city_name }}</div>
               </v-col>
-              <v-col cols="12" md="6">
+              <v-col cols="12" md="3">
                 <div>Transmission</div>
                 <div class="text-h6">{{ order.car.transmission.transmission }}</div>
               </v-col>
@@ -121,9 +113,6 @@ export default {
       required: true
     }
   },
-  data: () => ({
-    car: [],
-  }),
   methods: {
     checkout (){
       this.$emit('payout')
