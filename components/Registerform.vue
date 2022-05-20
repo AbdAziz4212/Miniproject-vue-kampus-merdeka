@@ -24,7 +24,6 @@
       >
         <v-text-field
           v-model="name"
-          :counter="10"
           :rules="nameRules"
           label="Name"
           required
@@ -37,7 +36,35 @@
           required
         ></v-text-field>
 
-        <div class="d-flex justify-space-between">
+        <v-text-field
+          v-model="password"
+          :rules="passwordRules"
+          type="password"
+          label="Password"
+          required
+        ></v-text-field>
+
+        <v-text-field
+          v-model="phone"
+          :rules="phoneRules"
+          label="Phone"
+          required
+        ></v-text-field>
+
+        <v-text-field
+          v-model="job"
+          label="Job"
+          required
+        ></v-text-field>
+        
+        <v-text-field
+          v-model="address"
+          :rules="addressRules"
+          label="Address"
+          required
+        ></v-text-field>
+
+        <div class="d-flex justify-space-between mt-5 ">
           <v-btn
             color="blue-grey"
             class="white--text"
@@ -55,11 +82,12 @@
 
           <v-btn
             :disabled="!valid"
+            :loading="loading"
             color="success"
             class="mr-4"
             @click="validate"
           >
-            Login
+            Register
           </v-btn>
         </div>
       </v-form>
@@ -76,18 +104,46 @@ export default {
       name: '',
       nameRules: [
         v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
       email: '',
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
+      phone: '',
+      phoneRules: [
+        v => !!v || 'Phone is required',
+      ],
+      password: '',
+      passwordRules: [
+        v => !!v || 'Password is required',
+        v => (v && v.length >= 8) || 'Password must be less than 8 characters',
+      ],
+      address: '',
+      addressRules: [
+        v => !!v || 'Address is required',
+      ],
+      job: '',
+      loading: false
     }
   },
   methods: {
     validate () {
-      this.$refs.form.validate()
+      if(this.name !== '' && this.email !== '' && this.email !== '' && this.password !== '' && this.address !== ''){
+        this.loading = !this.loading
+        const object = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          phone: this.phone,
+          address: this.address,
+          job: this.job
+        }
+        this.$emit('regisInput', object)
+        setTimeout(() => (this.loading = !this.loading), 3000)
+      }else{
+        this.$refs.form.validate()
+      }
     },
   },
 }

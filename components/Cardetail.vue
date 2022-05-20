@@ -22,8 +22,16 @@
               <div class="text-h5 font-weight-bold">{{ car.name }}</div>
             </v-col>
             <v-col cols="12" md="4" class="pa-5">
+              <div>Brand :</div>
+              <div class="text-h5 font-weight-bold">{{ car.brand.brand }}</div>
+            </v-col>
+            <v-col cols="12" md="4" class="pa-5">
               <div>Type :</div>
               <div class="text-h5 font-weight-bold">{{ car.type.name_type }}</div>
+            </v-col>
+            <v-col cols="12" md="4" class="pa-5">
+              <div>City :</div>
+              <div class="text-h5 font-weight-bold">{{ car.regency.city_name }}</div>
             </v-col>
             <v-col cols="12" md="4" class="pa-5">
               <div>Year :</div>
@@ -44,6 +52,9 @@
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <div class="d-flex flex-wrap justify-space-around">
+                      <div class="font-weight-bold ma-2 pa-1">
+                        <v-icon>mdi-gas-station</v-icon> {{ car.fuel.fuel }}
+                      </div>
                       <div class="font-weight-bold ma-2 pa-1">
                         <v-icon>mdi-speedometer</v-icon> {{ car.speed }} Km
                       </div>

@@ -67,7 +67,7 @@
             >
               <v-text-field
                 v-model="date"
-                label="Date Order"
+                label="Order Start Date"
                 prepend-icon="mdi-calendar"
                 readonly
                 class="pa-10"
@@ -115,7 +115,7 @@
             >
               <v-text-field
                 v-model="date2"
-                label="Date"
+                label="Order End Date"
                 prepend-icon="mdi-calendar"
                 readonly
                 class="pa-10"

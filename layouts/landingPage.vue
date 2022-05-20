@@ -35,16 +35,6 @@
           {{ link.name }}
         </v-tab>
       </v-tabs>
-      <v-btn
-        rounded
-        color="darken-1 pa-5"
-        dark
-      >
-        <v-icon class="mr-1">
-          mdi-cloud-download
-        </v-icon>
-         Download Apps
-      </v-btn>
       <!-- <v-btn
         rounded
         color="darken-1 pa-5 ma-2"
@@ -53,7 +43,7 @@
         to="/login"
       >
         Login
-      </v-btn>
+      </v-btn> -->
       <v-btn
         rounded
         color="darken-1 pa-5 ma-2"
@@ -62,7 +52,17 @@
         to="/register"
       >
         Register
-      </v-btn> -->
+      </v-btn>
+      <v-btn
+        rounded
+        color="darken-1 pa-5 ma-2"
+        dark
+      >
+        <v-icon class="mr-1">
+          mdi-cloud-download
+        </v-icon>
+         Download Apps
+      </v-btn>
     </v-app-bar>
 
     <v-main>
