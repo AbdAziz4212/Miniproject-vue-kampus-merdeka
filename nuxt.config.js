@@ -14,14 +14,18 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/carpo.png' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/carpo.png' },
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,900&display=swap' },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~/plugins/persistedState.client.js', ssr: false }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -40,6 +44,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://go.nuxtjs.dev/axios
+    '@nuxtjs/apollo',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -70,6 +76,15 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
         },
+      },
+    },
+  },
+
+  // Apollo configuration
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'https://hopeful-serval-60.hasura.app/v1/graphql',
       },
     },
   },

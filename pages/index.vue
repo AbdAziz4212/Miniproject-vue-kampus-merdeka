@@ -1,36 +1,40 @@
 <template>
-  <v-row align="center">
-    <v-col cols="12" sm="12" md="6" class="ma-0 pa-0">
-      <v-card class="px-14 mt-sm-16 mt-md-16 mt-lg-0 mt-16" elevation="0">
-        <div class="text-sm-h2 text-md-h2 text-lg-h1 text-h3 font-weight-bold mt-lg-n16">
-          Premium
-        </div>
-        <div class="text-sm-h2 text-md-h2 text-lg-h1 text-h3 font-weight-bold">
-          Car Rental
-        </div>
-        <div class="text-sm-h2 text-md-h2 text-lg-h1 text-h3 font-weight-bold">
-          In Indonesia
-        </div>
-        <div class="text-subtitle-1">
-          The First premium car in indonesia. Based on ratings and reviews from real users is the top-ranked car rental service company. If you are planning to rent a cor you can trust us.
-        </div>
-      </v-card>
-    </v-col>
-    <v-col cols="12" sm="12" md="6" class="ma-0">
-      <!-- <v-card class="pa-0" elevation="0">
-        <v-img
-          lazy-src="../assets/halfcar.png"
-          src="../assets/halfcar.png"
-        ></v-img>
-      </v-card> -->
-      <div class="image-main">
-        <v-img
-          lazy-src="../assets/halfcar.png"
-          src="../assets/halfcar.png"
-        ></v-img>
+  <div>
+    <Bannerhome />
+    <v-container>
+      <Whysection />
+      <div id="city-section" class="my-16">
+        <div class="text-h4 text-center font-weight-medium ma-5 mb-8">Most Accessible City</div>
+        <v-row>
+          <v-col 
+            v-for="(city, index) in getCities"
+            :key="index"
+            cols="12" 
+            sm="12" 
+            md="3"
+          >
+            <Cityitem :city="city" />
+          </v-col>
+        </v-row>
       </div>
-    </v-col>
-  </v-row>
+      <div class="my-16"></div>
+      <div id="testimoni-section" class="my-16">
+        <div class="text-h4 text-center font-weight-medium ma-16 mb-8">What Customer are saying</div>
+        <v-row>
+          <v-col
+            v-for="(comment, index) in getTestimonials"
+            :key="index" 
+            cols="12" 
+            sm="12" 
+            md="4"
+          >
+            <Commentitem :comment="comment" />
+          </v-col>
+        </v-row>
+      </div>
+      <Phonesection />
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -39,6 +43,34 @@ export default {
   layout: 'landingPage',
   head: {
     title: 'Carpo'
+  },
+  computed: {
+    getCities() {
+      const city = this.$store.state.home.cities
+      return city
+    },
+    getTestimonials() {
+      const city = this.$store.state.home.testimonials
+      return city
+    }
+  },
+  mounted () {
+    this.getFetchCity()
+    this.getFetchTesti()
+  },
+  methods: {
+    getFetchCity () {
+      this.$store.dispatch('home/getFetchCities')
+    },
+    getFetchTesti () {
+      this.$store.dispatch('home/getFetchTesti')
+    }
   }
 }
 </script>
+
+<style scoped>
+.v-main {
+  background-color: white;
+}
+</style>
